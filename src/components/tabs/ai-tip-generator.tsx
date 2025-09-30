@@ -37,7 +37,7 @@ import {
 } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { Textarea } from "@/components/ui/textarea";
-import { Sparkles, Bot, AlertTriangle, Loader } from "lucide-react";
+import { Sparkles, Bot, Loader } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
@@ -98,10 +98,10 @@ const AITipGenerator = () => {
       <div>
         <h2 className="text-3xl font-headline font-bold flex items-center gap-2">
             <Sparkles className="text-primary"/>
-            Gerador de Dica Personalizada com IA
+            Adormecer em 10-20 Minutos: Guia Prático com IA
         </h2>
         <p className="mt-2 text-lg text-muted-foreground">
-          Responda algumas perguntas para receber uma dica de sono focada nas suas necessidades.
+          Receba uma técnica ou dica de um especialista em sono, personalizada para você, para adormecer mais rápido hoje à noite.
         </p>
       </div>
 
@@ -109,9 +109,9 @@ const AITipGenerator = () => {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <CardHeader>
-              <CardTitle>Seus Hábitos</CardTitle>
+              <CardTitle>Conte-me sobre seu dia</CardTitle>
               <CardDescription>
-                Suas respostas são usadas apenas para gerar a dica e não são armazenadas.
+                Suas respostas nos ajudam a criar a melhor recomendação para você. Não são armazenadas.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -120,7 +120,7 @@ const AITipGenerator = () => {
                 name="stressLevel"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Nível de Estresse (1-5)</FormLabel>
+                    <FormLabel>Nível de Estresse hoje (1-5)</FormLabel>
                     <FormControl>
                       <>
                         <Slider
@@ -147,7 +147,7 @@ const AITipGenerator = () => {
                     name="caffeineIntake"
                     render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Consumo de Cafeína</FormLabel>
+                        <FormLabel>Consumo de Cafeína hoje</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                             <SelectTrigger>
@@ -234,7 +234,7 @@ const AITipGenerator = () => {
                 ) : (
                     <Sparkles className="mr-2 h-4 w-4" />
                 )}
-                Gerar Dica
+                Gerar Dica Prática
               </Button>
             </CardFooter>
           </form>

@@ -2,7 +2,6 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { tabsConfig } from "@/lib/content";
-import StartHereTab from "./tabs/start-here";
 import SosTab from "./tabs/sos";
 import NightRoutineTab from "./tabs/night-routine";
 import EssentialsTab from "./tabs/caffeine-screens-light";
@@ -13,15 +12,16 @@ import AITipGenerator from "./tabs/ai-tip-generator";
 import { useEffect, useState } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
+import SkinRecoveryTab from "./tabs/skin-recovery";
 
 const tabComponents: { [key: string]: React.ComponentType } = {
-  start: StartHereTab,
-  sos: SosTab,
-  routine: NightRoutineTab,
-  essentials: EssentialsTab,
-  tools: ToolsPlannersTab,
-  travel: TravelJetlagTab,
-  faq: FaqTab,
+  "sos-guide": SosTab,
+  "fast-sleep": NightRoutineTab,
+  "anxiety-program": TravelJetlagTab,
+  "natural-teas": FaqTab,
+  "natural-remedies": ToolsPlannersTab,
+  "digital-curfew": EssentialsTab,
+  "skin-recovery": SkinRecoveryTab,
   "ai-tip": AITipGenerator,
 };
 

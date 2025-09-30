@@ -4,9 +4,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { faqContent } from "@/lib/content";
-import { HelpCircle } from "lucide-react";
+import { HelpCircle, Leaf } from "lucide-react";
 
 const FaqTab = () => {
   return (
@@ -23,12 +23,12 @@ const FaqTab = () => {
               <AccordionItem key={index} value={`item-${index}`}>
                 <AccordionTrigger>
                   <div className="flex items-center gap-2 text-left">
-                    <HelpCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                    <Leaf className="h-4 w-4 text-primary flex-shrink-0" />
                     {faq.q}
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  {faq.a}
+                  <p className="text-base">{faq.a}</p>
                 </AccordionContent>
               </AccordionItem>
             ))}

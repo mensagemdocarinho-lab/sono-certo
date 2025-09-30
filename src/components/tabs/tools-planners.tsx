@@ -1,9 +1,9 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { toolsContent } from "@/lib/content";
-import { Download, FileText, Calendar, ListChecks } from "lucide-react";
+import { Download, Globe, BookOpen, Utensils } from "lucide-react";
 
-const icons = [<FileText key="file" />, <ListChecks key="list" />, <Calendar key="calendar" />];
+const icons = [<Globe key="globe" />, <BookOpen key="book" />, <Utensils key="utensils" />];
 
 const ToolsPlannersTab = () => {
   return (
@@ -21,22 +21,15 @@ const ToolsPlannersTab = () => {
                 <span className="text-primary">{icons[index]}</span>
                 {tool.title}
               </CardTitle>
-              <CardDescription>{tool.description}</CardDescription>
             </CardHeader>
-            <CardContent className="flex-grow flex items-end">
-              <a href={tool.link} download target="_blank" rel="noopener noreferrer" className="w-full">
-                <Button className="w-full">
-                  <Download className="mr-2 h-4 w-4" />
-                  Baixar PDF
-                </Button>
-              </a>
+            <CardContent className="flex-grow">
+              <p className="text-muted-foreground">{tool.description}</p>
             </CardContent>
           </Card>
         ))}
       </div>
        <div className="text-center text-sm text-muted-foreground pt-4">
-        <p>// EDITAR AQUI: Para que os downloads funcionem, substitua os links dos arquivos em <code>src/lib/content.ts</code>.</p>
-        <p>Atualmente, eles baixam arquivos de placeholder.</p>
+        <p>Lembre-se: remédios naturais podem interagir com outros medicamentos. Consulte um profissional de saúde.</p>
       </div>
     </div>
   );

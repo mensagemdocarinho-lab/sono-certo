@@ -16,21 +16,21 @@ const SosTab = () => {
 
       <Card>
         <CardHeader>
-          <CardTitle>Rota Expressa de Volta ao Sono</CardTitle>
-          <CardDescription>Siga este fluxograma de decisões simples.</CardDescription>
+          <CardTitle>Fluxograma de Volta ao Sono</CardTitle>
+          <CardDescription>Sem pânico. Apenas siga os passos de forma calma.</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col md:flex-row items-stretch justify-around gap-4">
             {sosContent.flowchart.map((step, index) => (
               <>
-                <div key={step.step} className="flex-1 text-center p-4 bg-secondary rounded-lg">
-                  <p className="font-bold text-primary">Passo {step.step}</p>
-                  <p className="mt-1 font-semibold">{step.title}</p>
+                <div key={step.step} className="flex-1 text-center p-4 bg-secondary rounded-lg flex flex-col items-center justify-center">
+                  <p className="font-bold text-primary text-2xl mb-2">{step.step}</p>
+                  <p className="font-semibold">{step.title}</p>
                   <p className="mt-2 text-sm text-muted-foreground">{step.decision}</p>
                 </div>
                 {index < sosContent.flowchart.length - 1 && (
                   <div className="hidden md:flex items-center justify-center">
-                    <ArrowRight className="h-6 w-6 text-muted-foreground" />
+                    <ArrowRight className="h-8 w-8 text-muted-foreground" />
                   </div>
                 )}
               </>
@@ -43,7 +43,7 @@ const SosTab = () => {
         <div className="space-y-6">
             <Card>
                 <CardHeader>
-                    <CardTitle>Técnicas Rápidas</CardTitle>
+                    <CardTitle>Técnicas de Ação Rápida</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     {sosContent.techniques.map((tech, index) => (
@@ -56,7 +56,7 @@ const SosTab = () => {
             </Card>
              <Button variant="outline" className="w-full" onClick={() => window.print()}>
                 <Printer className="mr-2 h-4 w-4" />
-                Imprimir 1 Página SOS
+                Imprimir Guia Rápido SOS
             </Button>
         </div>
 

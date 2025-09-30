@@ -1,6 +1,6 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { travelContent } from "@/lib/content";
-import { Plane } from "lucide-react";
+import { CalendarCheck, CheckCircle } from "lucide-react";
 
 const TravelJetlagTab = () => {
   return (
@@ -10,17 +10,20 @@ const TravelJetlagTab = () => {
         <p className="mt-2 text-lg text-muted-foreground">{travelContent.description}</p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="space-y-4">
         {travelContent.protocols.map((protocol, index) => (
           <Card key={index}>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Plane className="h-5 w-5 text-primary" />
+                <CalendarCheck className="h-5 w-5 text-primary" />
                 {protocol.title}
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground">{protocol.content}</p>
+              <div className="flex items-start gap-4">
+                <CheckCircle className="h-5 w-5 text-green-500 mt-1 flex-shrink-0" />
+                <p className="text-muted-foreground">{protocol.content}</p>
+              </div>
             </CardContent>
           </Card>
         ))}

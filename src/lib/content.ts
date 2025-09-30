@@ -16,14 +16,14 @@ export const downloadConfig = {
 };
 
 export const tabsConfig = [
-  { value: "start", title: "Comece Aqui" },
-  { value: "sos", title: "Volta pro Sono (SOS)" },
-  { value: "routine", title: "Rotina Noturna" },
-  { value: "essentials", title: "Café, Telas e Luz" },
-  { value: "tools", title: "Ferramentas e Planners" },
-  { value: "travel", title: "Viagem/Jet Lag" },
-  { value: "faq", title: "Perguntas Rápidas" },
-  { value: "ai-tip", title: "Dica Personalizada" },
+  { value: "sos-guide", title: "Guia Rápido SOS" },
+  { value: "fast-sleep", title: "Pegar no Sono Rápido" },
+  { value: "anxiety-program", title: "Programa 7 Dias" },
+  { value: "natural-teas", title: "Chás Naturais" },
+  { value: "natural-remedies", title: "Remédios Naturais" },
+  { value: "digital-curfew", title: "Curfew Digital" },
+  { value: "skin-recovery", title: "Pele e Recuperação" },
+  { value: "ai-tip", title: "Guia Prático IA" },
 ];
 
 export const startHereContent = {
@@ -54,100 +54,123 @@ export const startHereContent = {
 };
 
 export const sosContent = {
-  title: "Acordou no Meio da Noite? Siga a Rota Expressa.",
-  description: "São 3 da manhã e você está de olhos abertos. Respire fundo. Sem pânico. Siga este guia rápido para voltar a adormecer.",
+  title: "Guia Rápido: Acordou no Meio da Noite? 3 Passos",
+  description: "São 3 da manhã, e os pensamentos não param. Respire. Sem pânico. Siga estes 3 passos para retomar a calma e voltar a dormir.",
   flowchart: [
-    { step: 1, title: "Estou ansioso?", decision: "Sim: Técnica de respiração. Não: Próximo passo." },
-    { step: 2, title: "Estou na cama há >20min?", decision: "Sim: Levante-se. Não: Mude de posição." },
-    { step: 3, title: "Preciso de um reset?", decision: "Sim: Leia algo chato. Não: Volte a tentar descansar." },
+    { step: 1, title: "Avalie a Ansiedade", decision: "Sua mente está acelerada? Se sim, foque em acalmar o sistema nervoso com a respiração 4-7-8. Se não, vá para o passo 2." },
+    { step: 2, title: "A Regra dos 20 Minutos", decision: "Você está rolando na cama há mais de 20 minutos? Se sim, levante-se. Ir para outro cômodo quebra a associação entre 'cama' e 'frustração'." },
+    { step: 3, title: "Atividade Monótona", decision: "Leia um livro físico (nada de telas!) sob uma luz fraca ou ouça um podcast relaxante. Volte para a cama apenas quando sentir o sono chegar de novo." },
   ],
   techniques: [
-    { title: "Técnica de 2 Minutos", description: "Respiração 4-7-8: Inspire por 4s, segure por 7s, expire por 8s. Repita 3x." },
-    { title: "Técnica de 5 Minutos", description: "Relaxamento muscular progressivo. Contraia e relaxe cada grupo muscular, dos pés à cabeça." },
-    { title: "Técnica de 10 Minutos", description: "Escreva suas preocupações em um papel. Deixe-as lá até amanhã." },
+    { title: "Respiração 4-7-8", description: "Inspire pelo nariz por 4s, segure o ar por 7s, e expire LENTAMENTE pela boca por 8s. Repita 3 a 4 vezes." },
+    { title: "Escaneamento Corporal", description: "Concentre-se em cada parte do seu corpo, dos pés à cabeça, sentindo o peso e o relaxamento de cada músculo. Não tente dormir, apenas sinta." },
+    { title: "Diário de Preocupações", description: "Tenha um caderno ao lado da cama. Anote o que está te incomodando. Esvaziar a mente no papel pode trazer um alívio imediato." },
   ],
 };
 
 export const nightRoutineContent = {
-  title: "Construa Sua Rampa de Desaceleração",
-  description: "Uma rotina noturna consistente é o sinal mais claro que você pode dar ao seu cérebro de que é hora de dormir. Escolha um script e adapte-o.",
+  title: "Busque a Melhor Estratégia para Pegar no Sono em 5–10 Minutos",
+  description: "O segredo não é 'tentar' dormir, mas sim criar as condições perfeitas para que o sono aconteça naturalmente. Teste estas estratégias.",
   routines: [
     {
-      title: "Script de 15 Minutos (O Essencial)",
-      content: "Chá sem cafeína + 10 min de leitura leve + Escovar os dentes no escuro."
+      title: "O Banho Morno Estratégico",
+      content: "Um banho morno 90 minutos antes de deitar ajuda a diminuir a temperatura corporal, um gatilho biológico para o sono. Duração: 10-15 minutos."
     },
     {
-      title: "Script de 30 Minutos (O Ideal)",
-      content: "Banho morno + Preparar a roupa do dia seguinte + 15 min de alongamento ou meditação + Luzes baixas."
+      title: "A Técnica do 'Pôr do Sol' Interno",
+      content: "Diminua as luzes da casa 1-2 horas antes de dormir. Use abajures com luz amarelada. Isso sinaliza ao seu cérebro que a noite está chegando."
     },
     {
-      title: "Script de 45 Minutos (O Completo)",
-      content: "Inclui o de 30 min + Escrever no diário do sono + 15 min de hobby offline (ouvir música, desenhar)."
+      title: "Alongamento Leve ou Yoga Restaurativa",
+      content: "5-10 minutos de alongamentos suaves que liberam a tensão do dia, focando em pescoço, ombros e costas. Procure por 'yoga para dormir' online."
     },
     {
-      title: "Versão para quem tem Crianças",
-      content: "Após colocar as crianças na cama, reserve 15 minutos SÓ para você, mesmo que seja apenas sentar em silêncio no escuro."
+      title: "Leitura Offline e Monótona",
+      content: "Escolha um livro que não seja muito estimulante. O objetivo é cansar a mente, não se envolver em uma trama complexa. Biografias ou livros técnicos são ótimos."
     }
   ],
 };
 
 export const essentialsContent = {
-    title: "Os Três Pilares: Cafeína, Telas e Luz",
-    description: "Gerenciar estes três fatores pode resolver uma grande parte dos problemas de sono. Seja estratégico.",
+    title: "Curfew Digital e Café Consciente: Controle de Telas e Cafeína",
+    description: "Dois dos maiores vilões do sono moderno. Aprenda a gerenciá-los com regras simples e eficazes para proteger sua noite.",
     items: [
       {
-        title: "Janela Segura de Cafeína",
-        content: "Regra geral: evite qualquer cafeína após as 14h. A meia-vida da cafeína é de 5-6 horas. Um café às 16h significa que metade dele ainda está no seu sistema às 21h.",
+        title: "O Toque de Recolher Digital",
+        content: "Estabeleça um 'curfew' para todas as telas (celular, TV, tablet) 90 minutos antes de dormir. A luz azul emitida por eles bloqueia a melatonina. Coloque o celular para carregar longe da cama.",
       },
       {
-        title: "Curfew Digital (Toque de Recolher)",
-        content: "Defina um alarme para 'desligar as telas' 60-90 minutos antes de dormir. A luz azul inibe a produção de melatonina, o hormônio do sono. Ative o modo noturno em todos os dispositivos.",
+        title: "A Regra das 8 Horas para a Cafeína",
+        content: "A cafeína pode ficar no seu sistema por mais de 8 horas. Para um sono ideal, evite qualquer fonte de cafeína (café, chá preto/verde, refrigerantes, chocolate) após as 14h.",
       },
       {
-        title: "Ajustes de Luz Ambiente",
-        content: "Use lâmpadas de baixa intensidade e cor quente (amarelada) no quarto à noite. Durante o dia, exponha-se à luz solar direta por pelo menos 15 minutos pela manhã para regular seu relógio biológico.",
+        title: "O Ritual da Luz",
+        content: "Exponha-se à luz solar por 15 minutos logo ao acordar. Isso 'liga' seu relógio biológico. À noite, faça o oposto: use luzes fracas e amareladas para 'desligá-lo'.",
       },
     ]
 };
 
 export const toolsContent = {
-  title: "Ferramentas Para Tornar o Sono Visível",
-  description: "O que não é medido, não é melhorado. Use estas ferramentas simples para entender seus padrões e progredir.",
+  title: "Remédios Naturais para o Sono: Tradições do Mundo",
+  description: "Culturas ao redor do mundo usam remédios naturais há séculos. Explore algumas dessas tradições para encontrar o que funciona para você.",
   tools: [
-    { title: "Diário do Sono (2 min)", description: "Anote a hora que deitou, tempo para adormecer, despertares e hora de levantar. Um padrão vai emergir.", link: downloadConfig.files[0].url },
-    { title: "Planner Semanal do Sono", description: "Planeje sua semana com horários de dormir e acordar consistentes, inclusive nos fins de semana.", link: downloadConfig.files[1].url },
-    { title: "Calendário de 14 Dias", description: "Um desafio para consolidar sua nova rotina de sono.", link: downloadConfig.files[2].url },
+    { title: "Ashwagandha (Índia)", description: "Uma erva adaptogênica usada na medicina Ayurveda para reduzir o estresse e a ansiedade, preparando o corpo para o descanso. (Consulte um profissional).", link: downloadConfig.files[0].url },
+    { title: "Valeriana (Europa)", description: "A raiz de valeriana é um sedativo suave tradicionalmente usado para tratar a insônia e a ansiedade. Conhecida por seu cheiro forte.", link: downloadConfig.files[1].url },
+    { title: "Leite Dourado (Golden Milk)", description: "Uma bebida quente à base de leite (ou leite vegetal), açafrão, canela e gengibre. Suas propriedades anti-inflamatórias ajudam a relaxar o corpo.", link: downloadConfig.files[2].url },
   ]
 };
 
 export const travelContent = {
-  title: "Viagem e Jet Lag: Minimize o Impacto",
-  description: "Viajar não precisa destruir seu sono. Com um pouco de planejamento, você pode se adaptar mais rápido.",
+  title: "Programa de 7 Dias para Aliviar a Ansiedade e Dormir Melhor",
+  description: "Siga este programa passo a passo para acalmar a mente e treinar seu corpo para um sono mais profundo. A consistência é a chave.",
   protocols: [
     {
-      title: "Diferença de 3 Horas",
-      content: "Nos 2 dias antes da viagem, ajuste sua hora de dormir e acordar 1 hora na direção do seu destino. No avião, ajuste seu relógio imediatamente."
+      title: "Dia 1-2: Observação",
+      content: "Use o 'Diário do Sono' (na aba de ferramentas) para anotar seus padrões sem julgamento. A que horas você deita? Quanto tempo leva para dormir?"
     },
     {
-      title: "Diferença de 6 Horas",
-      content: "Comece a ajustar seu horário 3-4 dias antes. No destino, exponha-se à luz da manhã para adiantar seu relógio biológico (viagens para o leste) ou à luz do fim da tarde para atrasá-lo (viagens para o oeste)."
+      title: "Dia 3-4: A Rotina Mínima",
+      content: "Implemente um 'curfew digital' de 30 minutos e faça 5 minutos de respiração consciente antes de deitar. Mantenha o mesmo horário de acordar."
     },
     {
-      title: "Diferença de 9+ Horas",
-      content: "Planejamento é crucial. Considere uma parada no meio do caminho se possível. Use melatonina de baixa dose (0.5mg) de forma estratégica, com orientação profissional."
+      title: "Dia 5-7: Consolidação",
+      content: "Aumente o curfew para 60 minutos, adicione um chá relaxante à sua rotina e tente a técnica de relaxamento muscular progressivo. Avalie os resultados."
     }
   ]
 };
 
 export const faqContent = {
-  title: "Perguntas Rápidas (e Respostas Curtas)",
-  description: "Respostas diretas para as dúvidas mais comuns sobre insônia.",
+  title: "Chás Naturais para um Sono Reparador",
+  description: "Um ritual de chá quente e sem cafeína pode ser um poderoso sinal para o seu corpo de que é hora de desacelerar. Conheça as melhores opções.",
   faqs: [
-    { q: "Soneca é bom ou ruim?", a: "Para quem tem insônia, geralmente é ruim. Se precisar, que seja antes das 15h e por no máximo 20 minutos." },
-    { q: "Exercício físico à noite atrapalha?", a: "Exercício intenso, sim. Alongamento ou ioga leve podem ajudar a relaxar." },
-    { q: "Devo comer antes de dormir?", a: "Ir para a cama com fome pode atrapalhar. Opte por um lanche leve, como uma banana ou um punhado de amêndoas." },
-    { q: "Álcool ajuda a dormir?", a: "Ajuda a apagar, mas fragmenta o sono na segunda metade da noite, piorando a qualidade." },
-    { q: "Melatonina é a solução?", a: "Não é uma pílula mágica para dormir. É mais útil para ajustar o relógio biológico (jet lag) e deve ser usada com orientação." },
-    { q: "Contar carneirinhos funciona?", a: "Pode aumentar a ansiedade por 'ter que' dormir. É melhor focar em uma visualização relaxante e agradável." },
+    { q: "Camomila", a: "O clássico. Contém apigenina, um antioxidante que se liga a receptores no cérebro que podem promover o sono e reduzir a ansiedade." },
+    { q: "Melissa (Erva-Cidreira)", a: "Conhecida por suas propriedades calmantes, ajuda a aliviar o estresse e a indigestão, dois inimigos do bom sono." },
+    { q: "Passiflora (Flor de Maracujá)", a: "Frequentemente usada para tratar a ansiedade. Aumenta os níveis de GABA no cérebro, um neurotransmissor que promove o relaxamento." },
+    { q: "Valeriana", a: "Um dos chás mais potentes para o sono, com um efeito sedativo suave. O sabor é forte e terroso, muitas vezes misturado com outras ervas." },
+    { q: "Lavanda", a: "O aroma da lavanda por si só já é relaxante. Beber um chá de lavanda pode acalmar o sistema nervoso e melhorar a qualidade do sono." },
+    { q: "Quando devo tomar o chá?", a: "Idealmente, 30 a 60 minutos antes de ir para a cama, como parte do seu ritual de relaxamento noturno." },
   ]
+};
+
+export const skinRecoveryContent = {
+  title: "Pele e Recuperação: A Relação Vital Entre Sono e Aparência",
+  description: "O 'sono da beleza' não é um mito. Entenda como noites bem dormidas são o tratamento de pele mais eficaz que existe e como otimizar esse processo.",
+  items: [
+    {
+      title: "Reparo Celular e Colágeno",
+      content: "Durante o sono profundo, o corpo aumenta a produção de colágeno e repara os danos celulares causados pelo estresse e raios UV. Menos sono = mais rugas e flacidez.",
+    },
+    {
+      title: "O Hormônio do Crescimento (HGH)",
+      content: "O pico de liberação do HGH acontece nas primeiras horas de sono. Este hormônio é essencial para a reparação dos tecidos e a manutenção de uma pele espessa e saudável.",
+    },
+    {
+      title: "Redução do Cortisol (Hormônio do Estresse)",
+      content: "A privação de sono aumenta os níveis de cortisol, que pode levar à inflamação e à quebra do colágeno, resultando em acne e envelhecimento precoce.",
+    },
+    {
+      title: "Hidratação Noturna Otimizada",
+      content: "O corpo reequilibra sua hidratação durante a noite. Beba um copo de água antes do seu ritual noturno e use um hidratante para selar a umidade na pele.",
+    },
+  ],
 };
