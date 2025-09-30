@@ -16,14 +16,14 @@ export const downloadConfig = {
 };
 
 export const tabsConfig = [
-  { value: "sos-guide", title: "Guia Rápido SOS" },
-  { value: "fast-sleep", title: "Pegar no Sono Rápido" },
-  { value: "anxiety-program", title: "Programa 7 Dias" },
-  { value: "natural-teas", title: "Chás Naturais" },
-  { value: "natural-remedies", title: "Remédios Naturais" },
-  { value: "digital-curfew", title: "Curfew Digital" },
-  { value: "skin-recovery", title: "Pele e Recuperação" },
-  { value: "ai-tip", title: "Guia Prático IA" },
+  { value: "sos-guide", title: "Guia Rápido SOS", description: "Acordou no meio da noite? Siga 3 passos para voltar a dormir.", href: "https://gamma.app/docs/8n3c6ychrnka5lw", image: "https://picsum.photos/seed/tab1/400/200", imageHint: "night sky" },
+  { value: "fast-sleep", title: "Pegar no Sono Rápido", description: "Estratégias para adormecer em 5 a 10 minutos.", href: "https://gamma.app/docs/opkmpdbhgn0cepz", image: "https://picsum.photos/seed/tab2/400/200", imageHint: "sleeping person" },
+  { value: "anxiety-program", title: "Programa de 7 Dias", description: "Um plano para aliviar a ansiedade e melhorar seu sono.", href: "https://gamma.app/docs/6aytv0tnowbe57l", image: "https://picsum.photos/seed/tab3/400/200", imageHint: "calm yoga" },
+  { value: "natural-teas", title: "Chás Naturais", description: "Descubra os melhores chás para uma noite de sono reparadora.", href: "https://gamma.app/docs/kt749veehwvpxc2", image: "https://picsum.photos/seed/tab4/400/200", imageHint: "tea cup" },
+  { value: "natural-remedies", title: "Remédios Naturais", description: "Tradições do mundo para ajudar você a dormir melhor.", href: "https://gamma.app/docs/zplqd9vqi6r9h1z", image: "https://picsum.photos/seed/tab5/400/200", imageHint: "natural herbs" },
+  { value: "digital-curfew", title: "Curfew Digital", description: "Controle o uso de telas e cafeína para proteger seu sono.", href: "https://gamma.app/docs/pjbewllnbt0uyrh", image: "https://picsum.photos/seed/tab6/400/200", imageHint: "no smartphone" },
+  { value: "skin-recovery", title: "Pele e Recuperação", description: "A relação vital entre um bom sono e uma pele saudável.", href: "https://gamma.app/docs/aopjxwr6vsgr7mu", image: "https://picsum.photos/seed/tab7/400/200", imageHint: "healthy skin" },
+  { value: "ai-tip", title: "Guia Prático IA", description: "Receba uma dica personalizada de um especialista em sono.", href: "?tab=ai-tip", image: "https://picsum.photos/seed/tab8/400/200", imageHint: "robot brain" },
 ];
 
 export const startHereContent = {
@@ -141,7 +141,7 @@ export const travelContent = {
 
 export const faqContent = {
   title: "Chás Naturais para um Sono Reparador",
-  description: "Um ritual de chá quente e sem cafeína pode ser um poderoso sinal para o seu corpo de que é hora de desacelerar. Conheça as melhores opções.",
+  description: "Um ritual de chá quente e sem cafeína pode ser um poderoso sinal para seu corpo de que é hora de desacelerar. Conheça as melhores opções.",
   faqs: [
     { q: "Camomila", a: "O clássico. Contém apigenina, um antioxidante que se liga a receptores no cérebro que podem promover o sono e reduzir a ansiedade." },
     { q: "Melissa (Erva-Cidreira)", a: "Conhecida por suas propriedades calmantes, ajuda a aliviar o estresse e a indigestão, dois inimigos do bom sono." },
