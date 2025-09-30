@@ -22,7 +22,6 @@ export const tabsConfig = [
   { value: "digital-curfew", title: "Curfew Digital e Café Consciente: Controle de Telas e Cafeína", description: "Controle o uso de telas e cafeína para proteger seu sono.", href: "https://gamma.app/docs/pjbewllnbt0uyrh", image: "https://picsum.photos/seed/tab6/400/200", imageHint: "no smartphone" },
   { value: "skin-recovery", title: "Pele e Recuperação: A Relação Vital Entre Sono e Aparência", description: "A relação vital entre um bom sono e uma pele saudável.", href: "https://gamma.app/docs/aopjxwr6vsgr7mu", image: "https://picsum.photos/seed/tab7/400/200", imageHint: "healthy skin" },
   { value: "fast-sleep", title: "Busque a Melhor Estratégia para Pegar no Sono em Até 5–10 Minutos", description: "Estratégias para adormecer em 5 a 10 minutos.", href: "https://gamma.app/docs/opkmpdbhgn0cepz", image: "https://picsum.photos/seed/tab2/400/200", imageHint: "sleeping person" },
-  { value: "ai-tip", title: "Adormecer em 10–20 Minutos: Guia Prático com IA", description: "Receba uma dica personalizada de um especialista em sono.", href: "?tab=ai-tip", image: "https://picsum.photos/seed/tab8/400/200", imageHint: "robot brain" },
 ];
 
 export const startHereContent = {
