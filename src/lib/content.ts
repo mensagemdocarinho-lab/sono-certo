@@ -21,7 +21,7 @@ export const tabsConfig = [
   { value: "natural-remedies", title: "Curfew Digital e Café Consciente: Controle de Telas e Cafeína", description: "Controle o uso de telas e cafeína para proteger seu sono.", href: "https://gamma.app/docs/zplqd9vqi6r9h1z", image: "https://picsum.photos/seed/tab5/400/200", imageHint: "natural herbs" },
   { value: "digital-curfew", title: "Pele e Recuperação: A Relação Vital Entre Sono e Aparência", description: "A relação vital entre um bom sono e uma pele saudável.", href: "https://gamma.app/docs/pjbewllnbt0uyrh", image: "https://picsum.photos/seed/tab6/400/200", imageHint: "no smartphone" },
   { value: "skin-recovery", title: "Busque a Melhor Estratégia para Pegar no Sono em Até 5–10 Minutos", description: "Estratégias para adormecer em 5 a 10 minutos.", href: "https://gamma.app/docs/aopjxwr6vsgr7mu", image: "https://picsum.photos/seed/tab7/400/200", imageHint: "healthy skin" },
-  { value: "ai-tip", title: "Adormecer em 10–20 Minutos: Guia Prático com IA", description: "Receba uma dica de IA personalizada para adormecer mais rápido.", href: "?tab=ai-tip", image: "https://picsum.photos/seed/tab1/400/200", imageHint: "brain neurons" },
+  { value: "ai-tip", title: "Adormecer em 10-20 Minutos: Guia Prático com IA", description: "Receba uma dica de IA personalizada para adormecer mais rápido.", href: "?tab=ai-tip", image: "https://picsum.photos/seed/tab1/400/200", imageHint: "brain neurons" },
 ];
 
 export const startHereContent = {
