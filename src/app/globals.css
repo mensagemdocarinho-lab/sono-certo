@@ -22,8 +22,8 @@
     --muted: 257 10% 80%;
     --muted-foreground: 257 10% 45%;
 
-    --accent: 257 50% 90%;
-    --accent-foreground: 257 30% 30%;
+    --accent: 204 80% 95%;
+    --accent-foreground: 204 30% 30%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -60,8 +60,8 @@
     --muted: 257 15% 25%;
     --muted-foreground: 257 10% 65%;
 
-    --accent: 257 20% 25%;
-    --accent-foreground: 257 10% 90%;
+    --accent: 204 20% 25%;
+    --accent-foreground: 204 10% 90%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
@@ -84,5 +84,14 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animation-delay-600 {
+    animation-delay: 600ms;
   }
 }
