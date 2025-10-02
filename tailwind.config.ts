@@ -17,11 +17,26 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['"PT Sans"', 'sans-serif'],
-        headline: ['Literata', 'serif'],
+        body: ['Inter', 'sans-serif'],
+        headline: ['Merriweather', 'serif'],
         code: ['monospace'],
       },
       colors: {
+        'bg-0': 'var(--bg-0)',
+        'bg-1': 'var(--bg-1)',
+        'bg-2': 'var(--bg-2)',
+        'text-1': 'var(--text-1)',
+        'text-2': 'var(--text-2)',
+        'primary-base': 'var(--primary)',
+        'primary-600': 'var(--primary-600)',
+        'primary-700': 'var(--primary-700)',
+        'accent-color': 'var(--accent-color)',
+        'muted-color': 'var(--muted-color)',
+        'success': 'var(--success)',
+        'warning': 'var(--warning)',
+        'danger': 'var(--danger)',
+        'border-color': 'var(--border-color)',
+        
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -75,8 +90,11 @@ export default {
       },
       borderRadius: {
         lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        md: 'calc(var(--radius) - 4px)',
+        sm: 'calc(var(--radius) - 8px)',
+      },
+      boxShadow: {
+        DEFAULT: '0 8px 24px rgba(0,0,0,0.35)',
       },
       keyframes: {
         'accordion-down': {
@@ -96,11 +114,11 @@ export default {
           },
         },
         'fade-in-up': {
-          '0%': { opacity: '0', transform: 'translateY(16px)' },
+          '0%': { opacity: '0', transform: 'translateY(8px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         'fade-in-down': {
-            '0%': { opacity: '0', transform: 'translateY(-16px)' },
+            '0%': { opacity: '0', transform: 'translateY(-8px)' },
             '100%': { opacity: '1', transform: 'translateY(0)' },
         },
       },
@@ -112,5 +130,5 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'),  require('@tailwindcss/line-clamp')],
 } satisfies Config;

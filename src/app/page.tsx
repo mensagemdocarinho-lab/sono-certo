@@ -22,8 +22,8 @@ const StarField = () => {
       const style = {
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
-        width: `${Math.random() * 2 + 1}px`,
-        height: `${Math.random() * 2 + 1}px`,
+        width: `${Math.random() * 1.5 + 1}px`,
+        height: `${Math.random() * 1.5 + 1}px`,
         animationDelay: `${Math.random() * 5}s`,
         animationDuration: `${Math.random() * 5 + 5}s`,
       };
@@ -49,17 +49,17 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="flex flex-col min-h-screen bg-bg-0 text-text-1">
       <Header />
       <main className="flex-grow">
-        <section className="relative text-center py-24 sm:py-32 lg:py-40 flex flex-col items-center justify-center bg-gradient-to-b from-background via-card to-background overflow-hidden">
+        <section className="relative text-center py-24 sm:py-32 lg:py-40 flex flex-col items-center justify-center overflow-hidden">
           <StarField />
           <div className={`container z-10 transition-all duration-1000 ease-out ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
              <ZzzIcon className="w-16 h-16 mx-auto text-primary mb-4 animate-fade-in-down" />
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-headline font-bold text-primary-foreground tracking-tight animate-fade-in-up">
+            <h1 className="text-text-1 animate-fade-in-up">
               Bem‑vindo(a) ao Portal Sono em Prática
             </h1>
-            <p className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-foreground/70 animate-fade-in-up animation-delay-300">
+            <p className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-text-2 animate-fade-in-up animation-delay-300">
               Conteúdos práticos para reduzir a insônia e dormir melhor.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4 animate-fade-in-up animation-delay-600">
