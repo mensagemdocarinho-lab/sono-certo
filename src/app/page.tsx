@@ -3,6 +3,7 @@
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import SleepPortalTabs from "@/components/sleep-portal-tabs";
+import WelcomeOverlay from "@/components/welcome-overlay";
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -23,17 +24,18 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
+      <WelcomeOverlay />
       <Header />
       <main className="flex-grow">
         <section className="relative text-center py-20 sm:py-32 lg:py-40 flex flex-col items-center justify-center bg-gradient-to-b from-primary/10 via-background to-background overflow-hidden">
           <div className={`container z-10 transition-all duration-700 ease-out ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <h1 className={`text-5xl sm:text-7xl lg:text-8xl font-headline font-bold text-primary tracking-tight`}>
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-headline font-bold text-primary tracking-tight">
               Sua jornada para noites perfeitas começa agora.
             </h1>
-            <p className={`mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-foreground/80`}>
+            <p className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-foreground/80">
               Cansado de contar carneirinhos? Explore nossos guias interativos e encontre a solução ideal para você.
             </p>
-            <div className={`mt-8 flex justify-center`}>
+            <div className="mt-8 flex justify-center">
               <Button size="lg" onClick={scrollToContent}>
                 Explore os Guias
                 <ArrowDown className="ml-2 h-5 w-5" />
