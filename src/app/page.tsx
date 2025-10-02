@@ -66,9 +66,6 @@ export default function Home() {
               <Button size="lg" onClick={() => scrollToContent('produtos')} aria-label="Rolar para a seção de produtos">
                 Começar agora
               </Button>
-              <Button size="lg" variant="outline" onClick={() => scrollToContent('sos')} aria-label="Rolar para a seção SOS Madrugada">
-                SOS Madrugada
-              </Button>
             </div>
           </div>
         </section>

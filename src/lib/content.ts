@@ -16,7 +16,6 @@ export const downloadConfig = {
 };
 
 export const tabsConfig = [
-  { value: "sos-anchor", title: "SOS Madrugada: Rota Expressa de Volta ao Sono", description: "Acordou no meio da noite? Siga este guia rápido para voltar a dormir sem estresse.", href: "#sos", image: "https://picsum.photos/seed/sos/400/200", imageHint: "night sky" },
   { value: "anxiety-program", title: "Programa de 7 Dias para Aliviar a Ansiedade e Dormir Melhor", description: "Siga este programa passo a passo para acalmar a mente e treinar seu corpo para um sono mais profundo.", href: "https://gamma.app/docs/opkmpdbhgn0cepz", image: "https://picsum.photos/seed/tab2/400/200", imageHint: "calm yoga" },
   { value: "natural-teas", title: "Chás Naturais para um Sono Reparador", description: "Descubra os melhores chás para uma noite de sono reparadora.", href: "https://gamma.app/docs/6aytv0tnowbe57l", image: "https://picsum.photos/seed/tab3/400/200", imageHint: "tea cup" },
   { value: "natural-remedies", title: "Remédios Naturais para o Sono: Tradições do Mundo", description: "Tradições do mundo para ajudar você a dormir melhor.", href: "https://gamma.app/docs/kt749veehwvpxc2", image: "https://picsum.photos/seed/tab4/400/200", imageHint: "natural herbs" },
