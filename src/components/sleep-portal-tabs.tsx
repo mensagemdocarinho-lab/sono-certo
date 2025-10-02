@@ -14,13 +14,17 @@ import { ArrowRight, Sparkles } from "lucide-react";
 const PortalHome = () => {
   return (
     <div>
-       <div className="mb-8 text-center">
-          <h2 className="text-3xl font-headline font-bold">Revista do Sono: Seu Guia Interativo</h2>
+       <div className="mb-12 text-center">
+          <h2 className="text-3xl font-headline font-bold text-primary-foreground">Revista do Sono: Seu Guia Interativo</h2>
           <p className="mt-2 text-lg text-muted-foreground">Explore nossos guias práticos para transformar suas noites.</p>
         </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {tabsConfig.map((tab) => (
-          <Card key={tab.value} className="flex flex-col overflow-hidden transition-transform hover:scale-[1.02] hover:shadow-xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {tabsConfig.map((tab, index) => (
+          <Card 
+            key={tab.value} 
+            id={tab.value === 'sos-anchor' ? 'sos' : undefined}
+            className="flex flex-col overflow-hidden transition-all duration-150 ease-in-out border border-[rgba(255,255,255,0.06)] shadow-lg hover:shadow-primary/20 hover:scale-[1.03] hover:border-primary"
+            >
              <Link href={tab.href} target={tab.value === 'ai-tip' ? '_self' : '_blank'} rel="noopener noreferrer" className="flex flex-col h-full">
                 <CardHeader className="p-0">
                   <Image 
@@ -29,17 +33,17 @@ const PortalHome = () => {
                     width={400} 
                     height={200}
                     data-ai-hint={tab.imageHint}
-                    className="w-full h-40 object-cover" />
+                    className="w-full h-48 object-cover" />
                 </CardHeader>
-                <CardContent className="flex-grow p-4">
-                  <CardTitle className="text-lg font-bold font-headline">{tab.title}</CardTitle>
-                  <CardDescription className="mt-1 text-sm">{tab.description}</CardDescription>
+                <CardContent className="flex-grow p-5">
+                  <CardTitle className="text-xl font-bold font-headline leading-tight">{tab.title}</CardTitle>
+                  <CardDescription className="mt-2 text-base text-foreground/70">{tab.description}</CardDescription>
                 </CardContent>
-                <CardFooter className="p-4 pt-0">
-                    <Button variant="link" className="p-0 h-auto text-primary">
-                        {tab.value === 'ai-tip' ? 'Gerar Dica' : 'Ler Artigo'}
+                <CardFooter className="p-5 pt-0">
+                    <div className="text-primary font-semibold flex items-center">
+                        {tab.value === 'ai-tip' ? 'Gerar Dica' : tab.value === 'sos-anchor' ? 'Ver Guia Rápido' : 'Ler Artigo'}
                         {tab.value === 'ai-tip' ? <Sparkles className="ml-2 h-4 w-4" /> : <ArrowRight className="ml-2 h-4 w-4" />}
-                    </Button>
+                    </div>
                 </CardFooter>
              </Link>
           </Card>

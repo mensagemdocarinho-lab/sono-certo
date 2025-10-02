@@ -4,77 +4,65 @@
 
 @layer base {
   :root {
-    --background: 270 15% 8%; /* Alterado para preto/roxo escuro */
-    --foreground: 270 40% 80%; /* Alterado para roxo claro */
+    --background: 260 44% 4%; /* #0e0a14 */
+    --foreground: 240 10% 80%;
 
-    --card: 270 15% 12%;
-    --card-foreground: 270 40% 85%;
+    --card: 254 30% 11%; /* #1a1324 */
+    --card-foreground: 240 10% 85%;
 
-    --popover: 270 15% 12%;
-    --popover-foreground: 270 40% 85%;
+    --popover: 260 44% 4%;
+    --popover-foreground: 240 10% 85%;
 
-    --primary: 270 90% 70%; /* Roxo vibrante */
-    --primary-foreground: 270 90% 10%; /* Cor escura para texto em botões primários */
+    --primary: 259 100% 68%; /* #9b5cff */
+    --primary-foreground: 240 10% 98%;
 
-    --secondary: 270 15% 20%;
-    --secondary-foreground: 270 40% 85%;
+    --secondary: 188 85% 50%; /* #22d3ee */
+    --secondary-foreground: 260 44% 8%;
 
-    --muted: 270 15% 25%;
-    --muted-foreground: 270 20% 65%;
+    --muted: 254 30% 18%;
+    --muted-foreground: 240 15% 65%;
 
-    --accent: 270 90% 20%;
-    --accent-foreground: 270 90% 90%;
+    --accent: 254 30% 24%;
+    --accent-foreground: 240 10% 90%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 270 15% 25%;
-    --input: 270 15% 25%;
-    --ring: 270 90% 70%; /* Anel de foco roxo */
+    --border: 240 4% 15%;
+    --input: 240 4% 15%;
+    --ring: 259 100% 68%;
 
-    --chart-1: 270 70% 50%;
-    --chart-2: 290 60% 45%;
-    --chart-3: 250 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 300 75% 55%;
-    
-    --radius: 0.8rem;
+    --radius: 14px;
   }
 
   .dark {
-    --background: 270 15% 8%;
-    --foreground: 270 40% 80%;
+    --background: 260 44% 4%;
+    --foreground: 240 10% 80%;
 
-    --card: 270 15% 12%;
-    --card-foreground: 270 40% 85%;
+    --card: 254 30% 11%;
+    --card-foreground: 240 10% 85%;
 
-    --popover: 270 15% 12%;
-    --popover-foreground: 270 40% 85%;
+    --popover: 260 44% 4%;
+    --popover-foreground: 240 10% 85%;
 
-    --primary: 270 90% 70%;
-    --primary-foreground: 270 90% 10%;
+    --primary: 259 100% 68%;
+    --primary-foreground: 240 10% 98%;
 
-    --secondary: 270 15% 20%;
-    --secondary-foreground: 270 40% 85%;
+    --secondary: 188 85% 50%;
+    --secondary-foreground: 260 44% 8%;
 
-    --muted: 270 15% 25%;
-    --muted-foreground: 270 20% 65%;
+    --muted: 254 30% 18%;
+    --muted-foreground: 240 15% 65%;
 
-    --accent: 270 90% 20%;
-    --accent-foreground: 270 90% 90%;
+    --accent: 254 30% 24%;
+    --accent-foreground: 240 10% 90%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 270 15% 25%;
-    --input: 270 15% 25%;
-    --ring: 270 90% 70%;
-
-    --chart-1: 270 70% 50%;
-    --chart-2: 290 60% 45%;
-    --chart-3: 250 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 300 75% 55%;
+    --border: 240 4% 15%;
+    --input: 240 4% 15%;
+    --ring: 259 100% 68%;
   }
 }
 
@@ -85,6 +73,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer utilities {
@@ -93,5 +84,23 @@
   }
   .animation-delay-600 {
     animation-delay: 600ms;
+  }
+  .star-field {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 5s infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
   }
 }

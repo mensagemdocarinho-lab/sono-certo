@@ -16,12 +16,14 @@ export const downloadConfig = {
 };
 
 export const tabsConfig = [
+  { value: "sos-anchor", title: "SOS Madrugada: Rota Expressa de Volta ao Sono", description: "Acordou no meio da noite? Siga este guia rápido para voltar a dormir sem estresse.", href: "#sos", image: "https://picsum.photos/seed/sos/400/200", imageHint: "night sky" },
   { value: "anxiety-program", title: "Programa de 7 Dias para Aliviar a Ansiedade e Dormir Melhor", description: "Siga este programa passo a passo para acalmar a mente e treinar seu corpo para um sono mais profundo.", href: "https://gamma.app/docs/opkmpdbhgn0cepz", image: "https://picsum.photos/seed/tab2/400/200", imageHint: "calm yoga" },
   { value: "natural-teas", title: "Chás Naturais para um Sono Reparador", description: "Descubra os melhores chás para uma noite de sono reparadora.", href: "https://gamma.app/docs/6aytv0tnowbe57l", image: "https://picsum.photos/seed/tab3/400/200", imageHint: "tea cup" },
   { value: "natural-remedies", title: "Remédios Naturais para o Sono: Tradições do Mundo", description: "Tradições do mundo para ajudar você a dormir melhor.", href: "https://gamma.app/docs/kt749veehwvpxc2", image: "https://picsum.photos/seed/tab4/400/200", imageHint: "natural herbs" },
   { value: "digital-curfew", title: "Curfew Digital e Café Consciente: Controle de Telas e Cafeína", description: "Controle o uso de telas e cafeína para proteger seu sono.", href: "https://gamma.app/docs/zplqd9vqi6r9h1z", image: "https://picsum.photos/seed/tab5/400/200", imageHint: "no smartphone" },
   { value: "skin-recovery", title: "Pele e Recuperação: A Relação Vital Entre Sono e Aparência", description: "O 'sono da beleza' não é um mito. Entenda como noites bem dormidas são o tratamento de pele mais eficaz que existe.", href: "https://gamma.app/docs/pjbewllnbt0uyrh", image: "https://picsum.photos/seed/skin/400/200", imageHint: "glowing skin" },
   { value: "ebook-practical-guide", title: "Adormecer em 10-20 Minutos: Guia Prático", description: "Um guia prático para adormecer mais rápido e ter um sono de qualidade.", href: "https://gamma.app/docs/aopjxwr6vsgr7mu", image: "https://picsum.photos/seed/ebook/400/200", imageHint: "reading book" },
+  { value: "ai-tip", title: "Assistente de IA para um Sono Rápido", description: "Receba uma técnica ou dica de um especialista em sono, personalizada para você, para adormecer mais rápido hoje à noite.", href: "?tab=ai-tip", image: "https://picsum.photos/seed/ai2/400/200", imageHint: "robot brain" },
 ];
 
 export const startHereContent = {
