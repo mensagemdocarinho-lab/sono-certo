@@ -29,7 +29,6 @@ const PortalHome = () => {
                     height={200}
                     data-ai-hint={tab.imageHint}
                     className="w-full h-48 object-cover" />
-                    <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[rgba(18,17,26,0.7)] to-transparent" />
                 </CardHeader>
                 <CardContent className="flex-grow p-5">
                   <CardTitle className="text-xl font-bold font-headline leading-tight text-text-1 line-clamp-2">{tab.title}</CardTitle>
