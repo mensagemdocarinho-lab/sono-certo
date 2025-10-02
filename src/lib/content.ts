@@ -1,8 +1,8 @@
 // EDITAR AQUI: Altere os textos, links e configurações do portal.
 
 export const siteConfig = {
-  author: "Seu Nome",
-  contactUrl: "#", // Link para seu email ou página de contato
+  author: "SonoCerto",
+  contactUrl: "https://wa.link/kaefbn", // Link para seu email ou página de contato
 };
 
 export const downloadConfig = {
@@ -12,7 +12,7 @@ export const downloadConfig = {
     { name: "planner_semanal.pdf", url: "/placeholders/planner_semanal.pdf" },
     { name: "calendario_14_dias.pdf", url: "/placeholders/calendario_14_dias.pdf" },
   ],
-  zipFileName: "SonoEmPratica_Recursos.zip",
+  zipFileName: "SonoCerto_Recursos.zip",
 };
 
 export const tabsConfig = [

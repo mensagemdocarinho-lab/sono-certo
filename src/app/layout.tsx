@@ -4,7 +4,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'SonoZen Portal',
+  title: 'SonoCerto Portal',
   description: 'Materiais rápidos para aliviar a insônia.',
 };
 

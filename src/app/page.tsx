@@ -55,14 +55,14 @@ export default function Home() {
         <section className="relative text-center py-24 sm:py-32 lg:py-40 flex flex-col items-center justify-center overflow-hidden">
           <StarField />
           <div className={`container z-10 transition-all duration-1000 ease-out ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-             <ZzzIcon className="w-16 h-16 mx-auto text-primary mb-4 animate-fade-in-down" />
-            <h1 className="text-text-1 animate-fade-in-up">
-              Bem‑vindo(a) ao Portal Sono em Prática
+             <ZzzIcon className="w-16 h-16 mx-auto text-primary mb-4" />
+            <h1 className="text-text-1">
+              Bem‑vindo(a) ao Portal SonoCerto
             </h1>
-            <p className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-text-2 animate-fade-in-up animation-delay-300">
+            <p className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-text-2">
               Conteúdos práticos para reduzir a insônia e dormir melhor.
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4 animate-fade-in-up animation-delay-600">
+            <div className="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
               <Button size="lg" onClick={() => scrollToContent('produtos')} aria-label="Rolar para a seção de produtos">
                 Começar agora
               </Button>
