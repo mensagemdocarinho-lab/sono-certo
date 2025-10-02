@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 260 44% 4%; /* #0e0a14 */
+    --background: 257 20% 9%; /* #120d1f */
     --foreground: 240 10% 80%;
 
-    --card: 254 30% 11%; /* #1a1324 */
+    --card: 257 30% 11%; /* #1a1324 */
     --card-foreground: 240 10% 85%;
 
-    --popover: 260 44% 4%;
+    --popover: 257 20% 9%;
     --popover-foreground: 240 10% 85%;
 
     --primary: 259 100% 68%; /* #9b5cff */
     --primary-foreground: 240 10% 98%;
 
     --secondary: 188 85% 50%; /* #22d3ee */
-    --secondary-foreground: 260 44% 8%;
+    --secondary-foreground: 257 20% 12%;
 
-    --muted: 254 30% 18%;
+    --muted: 257 30% 18%;
     --muted-foreground: 240 15% 65%;
 
-    --accent: 254 30% 24%;
+    --accent: 257 30% 24%;
     --accent-foreground: 240 10% 90%;
 
     --destructive: 0 84.2% 60.2%;
@@ -36,25 +36,25 @@
   }
 
   .dark {
-    --background: 260 44% 4%;
+    --background: 257 20% 9%;
     --foreground: 240 10% 80%;
 
-    --card: 254 30% 11%;
+    --card: 257 30% 11%;
     --card-foreground: 240 10% 85%;
 
-    --popover: 260 44% 4%;
+    --popover: 257 20% 9%;
     --popover-foreground: 240 10% 85%;
 
     --primary: 259 100% 68%;
     --primary-foreground: 240 10% 98%;
 
     --secondary: 188 85% 50%;
-    --secondary-foreground: 260 44% 8%;
+    --secondary-foreground: 257 20% 12%;
 
-    --muted: 254 30% 18%;
+    --muted: 257 30% 18%;
     --muted-foreground: 240 15% 65%;
 
-    --accent: 254 30% 24%;
+    --accent: 257 30% 24%;
     --accent-foreground: 240 10% 90%;
 
     --destructive: 0 62.8% 30.6%;
@@ -72,6 +72,8 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image: radial-gradient(circle at 20% 20%, hsl(var(--background)) 0%, #0c0a14 100%);
+
   }
   html {
     scroll-behavior: smooth;
@@ -92,15 +94,17 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
+    pointer-events: none;
   }
   .star {
     position: absolute;
     background: white;
+    opacity: 0.2;
     border-radius: 50%;
     animation: twinkle 5s infinite;
   }
   @keyframes twinkle {
-    0%, 100% { opacity: 0.5; }
+    0%, 100% { opacity: 0.2; }
     50% { opacity: 1; }
   }
 }

@@ -1,291 +1,229 @@
 "use client";
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Slider } from "@/components/ui/slider";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { Sparkles, Bot, Loader, AlertTriangle } from "lucide-react";
+import { Sparkles, Bot, Loader, AlertTriangle, Check, Copy } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import useLocalStorage from "@/hooks/use-local-storage";
+import { cn } from "@/lib/utils";
 
-const formSchema = z.object({
-  stressLevel: z
-    .number()
-    .min(1)
-    .max(5)
-    .default(3),
-  caffeineIntake: z
-    .enum(["none", "low", "moderate", "high"])
-    .default("moderate"),
-  screenTime: z.coerce.number().min(0).max(24).default(2),
-  exerciseFrequency: z
-    .enum(["none", "rarely", "sometimes", "often"])
-    .default("sometimes"),
-  sleepEnvironment: z
-    .string()
-    .min(10, "Por favor, descreva um pouco mais seu ambiente.")
-    .default("Quarto escuro e geralmente quieto."),
-});
+type TipResult = {
+  title: string;
+  why: string;
+  steps: string[];
+  totalTime: string;
+};
 
-type FormValues = z.infer<typeof formSchema>;
+const contextChips = ["Cafeína", "Telas", "Estresse"];
 
 const AITipGenerator = () => {
-  const [tip, setTip] = useState<string | null>(null);
+  const [description, setDescription] = useState("");
+  const [selectedChips, setSelectedChips] = useState<string[]>([]);
+  const [result, setResult] = useLocalStorage<TipResult | null>("sonozen_last_plan", null);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-  const [lastSubmittedValues, setLastSubmittedValues] = useState<FormValues | null>(null);
+  const resultCardRef = useRef<HTMLDivElement>(null);
+  const [hasCopied, setHasCopied] = useState(false);
 
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      stressLevel: 3,
-      caffeineIntake: "moderate",
-      screenTime: 2,
-      exerciseFrequency: "sometimes",
-      sleepEnvironment: "Quarto escuro e geralmente quieto.",
-    },
-  });
 
-  const getTip = async (values: FormValues) => {
+  useEffect(() => {
+    if (result && resultCardRef.current) {
+      resultCardRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [result]);
+
+  const handleChipClick = (chip: string) => {
+    setSelectedChips(prev =>
+      prev.includes(chip) ? prev.filter(c => c !== chip) : [...prev, chip]
+    );
+  };
+
+  const getFallbackPlan = (): TipResult => {
+      if (selectedChips.includes("Cafeína")) {
+          return { title: "Plano Detox Noturno", why: "Reduzir estimulantes e acalmar o sistema nervoso para preparar o corpo para o descanso.", steps: ["Beba um copo de água para ajudar na hidratação.", "Faça 5 minutos da respiração 4-7-8 (inspire 4s, segure 7s, expire 8s).", "Evite cafeína por pelo menos 8 horas antes de dormir amanhã."], totalTime: "~5-10 min" };
+      }
+      if (selectedChips.includes("Telas")) {
+          return { title: "Plano 'Curfew' Digital", why: "Minimizar a exposição à luz azul que inibe a produção de melatonina, o hormônio do sono.", steps: ["Ative o 'modo noturno' do seu celular com tons quentes.", "Faça 3 minutos de alongamento suave para pescoço e ombros.", "Deixe todos os eletrônicos a pelo menos 2 metros da cama."], totalTime: "~5 min" };
+      }
+      if (selectedChips.includes("Estresse")) {
+          return { title: "Plano Mente Calma", why: "Acalmar o sistema nervoso e processar pensamentos ansiosos para liberar a mente.", steps: ["Pratique a respiração 'caixa' por 3 minutos (4s inspira, 4s segura, 4s expira, 4s segura).", "Faça um 'scan corporal' mental, relaxando cada parte do corpo, dos pés à cabeça.", "Escreva por 2 minutos em um caderno qualquer pensamento que esteja na sua mente."], totalTime: "~10 min" };
+      }
+      return { title: "Protocolo Base de Relaxamento", why: "Sinalizar ao seu corpo e mente que é hora de desacelerar e se preparar para o sono.", steps: ["Diminua as luzes do ambiente, usando apenas um abajur de luz quente.", "Pratique a respiração 4-7-8 por 5 minutos.", "Leia algumas páginas de um livro físico (não-digital) que não seja muito estimulante."], totalTime: "~10-15 min" };
+  };
+
+
+  const getPlan = async () => {
     setIsLoading(true);
-    setTip(null);
-    console.log("Requesting tip with payload:", values);
+    setResult(null);
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000); // 8s timeout
 
     try {
       const response = await fetch('/api/dicas', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          userDescription: description,
+          contextTags: selectedChips,
+        }),
+        signal: controller.signal,
       });
-
-      console.log(`Response status: ${response.status}`);
-      const responseBody = await response.json();
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
-        throw new Error(responseBody.error || `Request failed with status ${response.status}`);
+        throw new Error(`API error: ${response.status}`);
       }
       
-      console.log("Received tip:", responseBody.sleepTip);
-      setTip(responseBody.sleepTip);
+      const data: TipResult = await response.json();
+      if (data && data.title) {
+        setResult(data);
+      } else {
+        throw new Error("Invalid response from AI");
+      }
 
     } catch (error: any) {
-      console.error("Error generating sleep tip:", error);
+      console.error("Error generating sleep plan, using fallback:", error.message);
+      clearTimeout(timeoutId);
+      setResult(getFallbackPlan());
       toast({
-        variant: "destructive",
-        title: "Erro ao gerar a dica",
-        description: "Houve um problema ao se comunicar com a IA. Por favor, tente novamente.",
-        action: (
-           <Button variant="secondary" onClick={() => getTip(values)}>Tentar de Novo</Button>
-        ),
+        title: "Usando um plano de backup",
+        description: "A IA não pôde responder, mas geramos um plano local para você.",
       });
     } finally {
       setIsLoading(false);
     }
   }
 
-  async function onSubmit(values: FormValues) {
-    setLastSubmittedValues(values);
-    await getTip(values);
-  }
+  const copyToClipboard = () => {
+    if (!result) return;
+    const textToCopy = `Plano de 10 Minutos: ${result.title}\n\n${result.why}\n\nPassos:\n${result.steps.map((s, i) => `${i + 1}. ${s}`).join("\n")}\n\nTempo: ${result.totalTime}`;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        setHasCopied(true);
+        toast({ title: "Plano copiado!" });
+        setTimeout(() => setHasCopied(false), 2000);
+    });
+  };
 
   return (
-    <div className="space-y-8">
-      <div>
-        <h2 className="text-3xl font-headline font-bold flex items-center gap-2">
+    <div className="space-y-6 max-w-2xl mx-auto">
+      <div className="text-center">
+        <h2 className="text-3xl font-headline font-bold flex items-center justify-center gap-2">
             <Sparkles className="text-primary"/>
-            Adormecer em 10-20 Minutos: Guia Prático com IA
+            Assistente de Rotas de Sono
         </h2>
         <p className="mt-2 text-lg text-muted-foreground">
-          Receba uma técnica ou dica de um especialista em sono, personalizada para você, para adormecer mais rápido hoje à noite.
+          Receba um plano de 10 minutos para relaxar e preparar seu corpo para dormir.
         </p>
       </div>
 
-      <Card>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <CardHeader>
-              <CardTitle>Conte-me sobre seu dia</CardTitle>
-              <CardDescription>
-                Suas respostas nos ajudam a criar a melhor recomendação para você. Não são armazenadas.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <FormField
-                control={form.control}
-                name="stressLevel"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Nível de Estresse hoje (1-5)</FormLabel>
-                    <FormControl>
-                      <>
-                        <Slider
-                          min={1}
-                          max={5}
-                          step={1}
-                          value={[field.value]}
-                          onValueChange={(value) => field.onChange(value[0])}
-                        />
-                         <div className="flex justify-between text-xs text-muted-foreground">
-                            <span>Baixo</span>
-                            <span>Médio</span>
-                            <span>Alto</span>
-                        </div>
-                      </>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="grid md:grid-cols-2 gap-6">
-                 <FormField
-                    control={form.control}
-                    name="caffeineIntake"
-                    render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Consumo de Cafeína hoje</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                            <SelectTrigger>
-                            <SelectValue placeholder="Selecione seu consumo" />
-                            </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                            <SelectItem value="none">Nenhum</SelectItem>
-                            <SelectItem value="low">Baixo (ex: 1 café/dia)</SelectItem>
-                            <SelectItem value="moderate">Moderado (ex: 2-3 cafés/dia)</SelectItem>
-                            <SelectItem value="high">Alto (ex: 4+ cafés/dia)</SelectItem>
-                        </SelectContent>
-                        </Select>
-                        <FormMessage />
-                    </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="exerciseFrequency"
-                    render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Frequência de Exercícios</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                            <SelectTrigger>
-                            <SelectValue placeholder="Selecione a frequência" />
-                            </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                            <SelectItem value="none">Nenhuma</SelectItem>
-                            <SelectItem value="rarely">Raramente</SelectItem>
-                            <SelectItem value="sometimes">Às vezes (1-2x/sem)</SelectItem>
-                            <SelectItem value="often">Frequente (3+x/sem)</SelectItem>
-                        </SelectContent>
-                        </Select>
-                        <FormMessage />
-                    </FormItem>
-                    )}
-                />
-              </div>
+      <Card className="bg-card/70 backdrop-blur-sm border-white/10">
+        <CardContent className="pt-6 space-y-4">
+          <div>
+            <label htmlFor="description" className="block text-sm font-medium text-foreground/80 mb-2">
+              Como foi seu dia e o que está te atrapalhando hoje?
+            </label>
+            <Textarea
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Ex: Tive um dia estressante e não consigo parar de pensar no trabalho..."
+              className="bg-background/50 border-white/20"
+            />
+          </div>
 
-               <FormField
-                control={form.control}
-                name="screenTime"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Tempo de tela antes de dormir (horas)</FormLabel>
-                    <FormControl>
-                      <Input type="number" placeholder="Ex: 2" {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      Quantas horas você passa em frente a telas (celular, TV, etc.) antes de deitar?
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="sleepEnvironment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Ambiente de Sono</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder="Ex: Meu quarto é escuro, mas ouço barulho da rua."
-                        {...field}
-                      />
-                    </FormControl>
-                     <FormDescription>
-                      Descreva brevemente seu quarto.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </CardContent>
-            <CardFooter>
-              <Button type="submit" disabled={isLoading}>
-                {isLoading ? (
-                    <Loader className="mr-2 h-4 w-4 animate-spin" />
-                ) : (
-                    <Sparkles className="mr-2 h-4 w-4" />
-                )}
-                {isLoading ? 'Gerando dica...' : 'Gerar Dica Prática'}
-              </Button>
-            </CardFooter>
-          </form>
-        </Form>
+          <div>
+             <p className="block text-sm font-medium text-foreground/80 mb-2">Selecione um contexto (opcional):</p>
+             <div className="flex flex-wrap gap-2">
+                {contextChips.map(chip => (
+                    <button
+                        key={chip}
+                        onClick={() => handleChipClick(chip)}
+                        className={cn(
+                            "px-3 py-1 text-sm rounded-full transition-colors border",
+                            selectedChips.includes(chip)
+                                ? "bg-primary border-primary text-primary-foreground"
+                                : "bg-transparent border-white/20 hover:bg-white/10"
+                        )}
+                    >
+                        {chip}
+                    </button>
+                ))}
+             </div>
+          </div>
+        </CardContent>
       </Card>
 
+      <div className="text-center">
+        <Button onClick={getPlan} disabled={isLoading} size="lg" className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-150">
+          {isLoading ? (
+            <Loader className="mr-2 h-5 w-5 animate-spin" />
+          ) : (
+            <Sparkles className="mr-2 h-5 w-5" />
+          )}
+          {isLoading ? 'Gerando plano...' : 'Gerar plano de 10 minutos'}
+        </Button>
+        <p className="text-xs text-muted-foreground mt-3">Não é aconselhamento médico.</p>
+      </div>
+
+      <div aria-live="polite">
       {isLoading && (
-         <Card className="bg-secondary">
+         <Card className="bg-card/70 backdrop-blur-sm border-white/10 animate-fade-in-up">
             <CardContent className="pt-6 flex items-center justify-center gap-4">
-                <Loader className="h-8 w-8 animate-spin text-primary"/>
-                <p className="text-muted-foreground">Analisando seus hábitos e gerando uma dica...</p>
+                <Loader className="h-6 w-6 animate-spin text-primary"/>
+                <p className="text-muted-foreground">Analisando sua rota de sono...</p>
             </CardContent>
          </Card>
       )}
 
-      {tip && (
-        <Card className="bg-accent/50 border-accent">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Bot className="h-6 w-6 text-primary" />
-              Sua Dica Personalizada
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-lg font-medium">{tip}</p>
-          </CardContent>
-        </Card>
+      {result && (
+        <div ref={resultCardRef} className="animate-fade-in-up animation-delay-300">
+            <Card className="bg-card/80 backdrop-blur-md border-white/10 shadow-xl overflow-hidden">
+                <CardHeader className="p-4 bg-white/5">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-primary">Plano de 10 minutos</span>
+                    <CardTitle className="flex items-center gap-2 text-xl font-headline">
+                        <Bot className="h-5 w-5 text-secondary" />
+                        {result.title}
+                    </CardTitle>
+                </CardHeader>
+                <CardContent className="p-4 md:p-6 space-y-4">
+                    <div>
+                        <h4 className="font-semibold text-secondary">Por que funciona</h4>
+                        <p className="text-sm text-foreground/80 mt-1">{result.why}</p>
+                    </div>
+
+                    <div>
+                        <h4 className="font-semibold text-secondary">Passos</h4>
+                        <ol className="mt-2 space-y-2 list-inside">
+                        {result.steps.map((step, index) => (
+                            <li key={index} className="flex items-start">
+                                <span className="flex items-center justify-center h-6 w-6 rounded-full bg-primary/20 text-primary font-bold text-xs mr-3 flex-shrink-0">{index + 1}</span>
+                                <span className="text-foreground/90">{step}</span>
+                            </li>
+                        ))}
+                        </ol>
+                    </div>
+
+                    <div className="text-right text-sm font-medium text-muted-foreground">
+                        Tempo total: {result.totalTime}
+                    </div>
+
+                    <div className="flex flex-wrap gap-2 pt-4 border-t border-white/10">
+                        <Button variant="ghost" size="sm" onClick={copyToClipboard}>
+                           {hasCopied ? <Check className="mr-2" /> : <Copy className="mr-2" />}
+                           {hasCopied ? 'Copiado!' : 'Copiar'}
+                        </Button>
+                        <Button variant="ghost" size="sm" onClick={() => setResult(result)}>Salvar Local</Button>
+                        <Button variant="ghost" size="sm" onClick={getPlan}>Gerar Novamente</Button>
+                    </div>
+
+                </CardContent>
+            </Card>
+        </div>
       )}
+      </div>
     </div>
   );
 };

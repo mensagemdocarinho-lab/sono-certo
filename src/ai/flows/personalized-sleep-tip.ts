@@ -1,10 +1,9 @@
-// Define the personalized sleep tip flow using Genkit.
 'use server';
 
 /**
- * @fileOverview Generates a personalized sleep tip based on user inputs.
+ * @fileOverview Generates a personalized 10-minute sleep plan based on user inputs.
  *
- * - generatePersonalizedSleepTip - A function that generates the personalized sleep tip.
+ * - generatePersonalizedSleepTip - A function that generates the personalized sleep plan.
  * - PersonalizedSleepTipInput - The input type for the generatePersonalizedSleepTip function.
  * - PersonalizedSleepTipOutput - The return type for the generatePersonalizedSleepTip function.
  */
@@ -13,30 +12,16 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const PersonalizedSleepTipInputSchema = z.object({
-  stressLevel: z
-    .number()
-    .min(1)
-    .max(5)
-    .describe("User's self-assessed stress level on a scale of 1 to 5, with 1 being low and 5 being high."),
-  caffeineIntake: z
-    .enum(['none', 'low', 'moderate', 'high'])
-    .describe('Typical daily caffeine intake.'),
-  screenTime: z
-    .number()
-    .min(0)
-    .max(24)
-    .describe('Average hours of screen time before bed.'),
-  exerciseFrequency: z
-    .enum(['none', 'rarely', 'sometimes', 'often'])
-    .describe('Frequency of exercise.'),
-  sleepEnvironment: z
-    .string()
-    .describe('Description of the user’s sleep environment (e.g., dark, quiet, noisy).'),
+  userDescription: z.string().describe('The user’s description of their day and what is bothering them.'),
+  contextTags: z.array(z.string()).describe('A list of context tags like [Caffeine], [Screens], [Stress].'),
 });
 export type PersonalizedSleepTipInput = z.infer<typeof PersonalizedSleepTipInputSchema>;
 
 const PersonalizedSleepTipOutputSchema = z.object({
-  sleepTip: z.string().describe('A personalized sleep tip based on the user input.'),
+  title: z.string().describe('A short, engaging title for the 10-minute plan.'),
+  why: z.string().describe('A single sentence explaining why this plan works.'),
+  steps: z.array(z.string()).describe('An array of 3 short, actionable steps.'),
+  totalTime: z.string().describe('The total estimated time in minutes.'),
 });
 export type PersonalizedSleepTipOutput = z.infer<typeof PersonalizedSleepTipOutputSchema>;
 
@@ -50,15 +35,12 @@ const personalizedSleepTipPrompt = ai.definePrompt({
   name: 'personalizedSleepTipPrompt',
   input: {schema: PersonalizedSleepTipInputSchema},
   output: {schema: PersonalizedSleepTipOutputSchema},
-  prompt: `Based on the following information about a user's sleep habits and concerns, generate a single, actionable sleep tip:
+  prompt: `Você é um especialista em higiene do sono. Gere um mini-plano de 10 minutos personalizado para hoje à noite, com base na descrição do usuário e nas tags de contexto quando presentes.
+  
+Descrição do usuário: {{{userDescription}}}
+Tags de Contexto: {{#if contextTags}}[{{#each contextTags}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}]{{else}}Nenhuma{{/if}}
 
-Stress Level (1-5): {{{stressLevel}}}
-Caffeine Intake: {{{caffeineIntake}}}
-Screen Time Before Bed (hours): {{{screenTime}}}
-Exercise Frequency: {{{exerciseFrequency}}}
-Sleep Environment: {{{sleepEnvironment}}}
-
-Focus on addressing the most significant factors that may be contributing to their sleep issues. The tip should be concise, easy to understand, and practical for immediate implementation. The tone should be encouraging and supportive.
+Seu formato de resposta DEVE ser um JSON que segue o Zod schema fornecido. O output deve ser em Português do Brasil, com um tom acolhedor, sem jargões médicos e sem diagnósticos.
 `,
 });
 
