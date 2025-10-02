@@ -21,7 +21,6 @@ export const tabsConfig = [
   { value: "natural-teas", title: "Chás Naturais para um Sono Reparador", description: "Descubra os melhores chás para uma noite de sono reparadora.", href: "https://gamma.app/docs/6aytv0tnowbe57l", image: "https://picsum.photos/seed/tab3/400/200", imageHint: "tea cup" },
   { value: "natural-remedies", title: "Remédios Naturais para o Sono: Tradições do Mundo", description: "Tradições do mundo para ajudar você a dormir melhor.", href: "https://gamma.app/docs/kt749veehwvpxc2", image: "https://picsum.photos/seed/tab4/400/200", imageHint: "natural herbs" },
   { value: "digital-curfew", title: "Curfew Digital e Café Consciente: Controle de Telas e Cafeína", description: "Controle o uso de telas e cafeína para proteger seu sono.", href: "https://gamma.app/docs/zplqd9vqi6r9h1z", image: "https://picsum.photos/seed/tab5/400/200", imageHint: "no smartphone" },
-  { value: "skin-recovery", title: "Pele e Recuperação: A Relação Vital Entre Sono e Aparência", description: "O 'sono da beleza' não é um mito. Entenda como noites bem dormidas são o tratamento de pele mais eficaz que existe.", href: "https://gamma.app/docs/pjbewllnbt0uyrh", image: "https://picsum.photos/seed/skin/400/200", imageHint: "glowing skin" },
   { value: "ebook-practical-guide", title: "Adormecer em 10-20 Minutos: Guia Prático", description: "Um guia prático para adormecer mais rápido e ter um sono de qualidade.", href: "https://gamma.app/docs/aopjxwr6vsgr7mu", image: "https://picsum.photos/seed/ebook/400/200", imageHint: "reading book" },
 ];
 
@@ -149,27 +148,4 @@ export const faqContent = {
     { q: "Lavanda", a: "O aroma da lavanda por si só já é relaxante. Beber um chá de lavanda pode acalmar o sistema nervoso e melhorar a qualidade do sono." },
     { q: "Quando devo tomar o chá?", a: "Idealmente, 30 a 60 minutos antes de ir para a cama, como parte do seu ritual de relaxamento noturno." },
   ]
-};
-
-export const skinRecoveryContent = {
-  title: "Pele e Recuperação: A Relação Vital Entre Sono e Aparência",
-  description: "O 'sono da beleza' não é um mito. Entenda como noites bem dormidas são o tratamento de pele mais eficaz que existe e como otimizar esse processo.",
-  items: [
-    {
-      title: "Reparo Celular e Colágeno",
-      content: "Durante o sono profundo, o corpo aumenta a produção de colágeno e repara os danos celulares causados pelo estresse e raios UV. Menos sono = mais rugas e flacidez.",
-    },
-    {
-      title: "O Hormônio do Crescimento (HGH)",
-      content: "O pico de liberação do HGH acontece nas primeiras horas de sono. Este hormônio é essencial para a reparação dos tecidos e a manutenção de uma pele espessa e saudável.",
-    },
-    {
-      title: "Redução do Cortisol (Hormônio do Estresse)",
-      content: "A privação de sono aumenta os níveis de cortisol, que pode levar à inflamação e à quebra do colágeno, resultando em acne e envelhecimento precoce.",
-    },
-    {
-      title: "Hidratação Noturna Otimizada",
-      content: "O corpo reequilibra sua hidratação durante a noite. Beba um copo de água antes do seu ritual noturno e use um hidratante para selar a umidade na pele.",
-    },
-  ],
 };
