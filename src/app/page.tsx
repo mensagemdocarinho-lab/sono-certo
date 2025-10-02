@@ -3,7 +3,6 @@
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import SleepPortalTabs from "@/components/sleep-portal-tabs";
-import WelcomeOverlay from "@/components/welcome-overlay";
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -24,7 +23,6 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      <WelcomeOverlay />
       <Header />
       <main className="flex-grow">
         <section className="relative text-center py-20 sm:py-32 lg:py-40 flex flex-col items-center justify-center bg-gradient-to-b from-primary/10 via-background to-background overflow-hidden">
