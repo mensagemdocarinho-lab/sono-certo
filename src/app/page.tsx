@@ -17,6 +17,7 @@ const scrollToContent = (id: string) => {
 const StarField = () => {
   const [stars, setStars] = useState<React.ReactNode[]>([]);
   useEffect(() => {
+    // Math.random() is safe to use in useEffect as it only runs on the client.
     const newStars = Array.from({ length: 50 }).map((_, i) => {
       const style = {
         left: `${Math.random() * 100}%`,

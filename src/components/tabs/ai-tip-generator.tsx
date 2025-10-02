@@ -4,10 +4,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import {
-  PersonalizedSleepTipInput,
-  generatePersonalizedSleepTip,
-} from "@/ai/flows/personalized-sleep-tip";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -37,7 +33,7 @@ import {
 } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { Textarea } from "@/components/ui/textarea";
-import { Sparkles, Bot, Loader } from "lucide-react";
+import { Sparkles, Bot, Loader, AlertTriangle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
@@ -59,12 +55,15 @@ const formSchema = z.object({
     .default("Quarto escuro e geralmente quieto."),
 });
 
+type FormValues = z.infer<typeof formSchema>;
+
 const AITipGenerator = () => {
   const [tip, setTip] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const [lastSubmittedValues, setLastSubmittedValues] = useState<FormValues | null>(null);
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       stressLevel: 3,
@@ -75,22 +74,46 @@ const AITipGenerator = () => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  const getTip = async (values: FormValues) => {
     setIsLoading(true);
     setTip(null);
+    console.log("Requesting tip with payload:", values);
+
     try {
-      const result = await generatePersonalizedSleepTip(values as PersonalizedSleepTipInput);
-      setTip(result.sleepTip);
-    } catch (error) {
+      const response = await fetch('/api/dicas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      });
+
+      console.log(`Response status: ${response.status}`);
+      const responseBody = await response.json();
+
+      if (!response.ok) {
+        throw new Error(responseBody.error || `Request failed with status ${response.status}`);
+      }
+      
+      console.log("Received tip:", responseBody.sleepTip);
+      setTip(responseBody.sleepTip);
+
+    } catch (error: any) {
       console.error("Error generating sleep tip:", error);
       toast({
         variant: "destructive",
         title: "Erro ao gerar a dica",
-        description: "Houve um problema ao se comunicar com a IA. Por favor, tente novamente mais tarde.",
+        description: "Houve um problema ao se comunicar com a IA. Por favor, tente novamente.",
+        action: (
+           <Button variant="secondary" onClick={() => getTip(values)}>Tentar de Novo</Button>
+        ),
       });
     } finally {
       setIsLoading(false);
     }
+  }
+
+  async function onSubmit(values: FormValues) {
+    setLastSubmittedValues(values);
+    await getTip(values);
   }
 
   return (
@@ -234,7 +257,7 @@ const AITipGenerator = () => {
                 ) : (
                     <Sparkles className="mr-2 h-4 w-4" />
                 )}
-                Gerar Dica Prática
+                {isLoading ? 'Gerando dica...' : 'Gerar Dica Prática'}
               </Button>
             </CardFooter>
           </form>
