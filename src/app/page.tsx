@@ -54,11 +54,6 @@ export default function Home() {
             <p className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-text-2">
               Guias rápidos, programa de 7 dias e técnicas para aliviar a insônia e dormir melhor.
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
-              <Button size="lg" onClick={scrollToContent} className="h-14 px-10 text-lg">
-                Ver todos os produtos
-              </Button>
-            </div>
           </div>
         </section>
         <div id="produtos" className="container mx-auto px-4 py-16 sm:py-24">
