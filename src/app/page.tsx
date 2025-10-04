@@ -6,10 +6,9 @@ import SleepPortalTabs from "@/components/sleep-portal-tabs";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import BackToTopButton from "@/components/back-to-top-button";
-import DailyPlanGenerator from "@/components/daily-plan-generator";
 
-const scrollToContent = (id: string) => {
-  const contentElement = document.getElementById(id);
+const scrollToContent = () => {
+  const contentElement = document.getElementById("produtos");
   if (contentElement) {
     contentElement.scrollIntoView({ behavior: "smooth" });
   }
@@ -50,27 +49,18 @@ export default function Home() {
           <StarField />
           <div className={`container z-10 transition-all duration-1000 ease-out ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             <h1 className="text-text-1">
-              Durma mais rápido hoje à noite
+              Recupere suas noites de sono
             </h1>
             <p className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-text-2">
-              Responda 3 perguntas. Receba um plano de 10 minutos.
+              Guias rápidos, programa de 7 dias e técnicas para aliviar a insônia e dormir melhor.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
-              <Button size="lg" onClick={() => scrollToContent('daily-plan')} className="h-14 px-10 text-lg">
-                Começar agora: Plano para hoje à noite (10 min)
-              </Button>
-              <Button size="lg" variant="outline" onClick={() => scrollToContent('produtos')}>
-                Acordei de madrugada (SOS)
+              <Button size="lg" onClick={scrollToContent} className="h-14 px-10 text-lg">
+                Ver todos os produtos
               </Button>
             </div>
-            <p className="mt-4 text-sm text-muted-foreground">Sem jargões. Só o que fazer nos próximos 10 minutos.</p>
           </div>
         </section>
-
-        <div id="daily-plan" className="container mx-auto px-4 py-16 sm:py-24 scroll-mt-20">
-          <DailyPlanGenerator />
-        </div>
-
         <div id="produtos" className="container mx-auto px-4 py-16 sm:py-24">
           <SleepPortalTabs />
         </div>

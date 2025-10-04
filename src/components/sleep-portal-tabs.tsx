@@ -10,7 +10,7 @@ const PortalHome = () => {
   return (
     <div>
        <div className="mb-12 text-center">
-          <h2 className="font-headline font-bold text-text-1">Revista do Sono: Seu Guia Interativo</h2>
+          <h2 className="font-headline font-bold text-text-1">Produtos e guias</h2>
           <p className="mt-2 text-lg text-text-2">Explore nossos guias práticos para transformar suas noites.</p>
         </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
