@@ -6,6 +6,7 @@ import SleepPortalTabs from "@/components/sleep-portal-tabs";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import BackToTopButton from "@/components/back-to-top-button";
+import DailyPlanGenerator from "@/components/daily-plan-generator";
 
 const scrollToContent = (id: string) => {
   const contentElement = document.getElementById(id);
@@ -22,8 +23,8 @@ const StarField = () => {
       const style = {
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
-        width: `${Math.random() * 1.5 + 1}px`,
-        height: `${Math.random() * 1.5 + 1}px`,
+        width: `${Math.random() * 1 + 1}px`,
+        height: `${Math.random() * 1 + 1}px`,
         animationDelay: `${Math.random() * 5}s`,
         animationDuration: `${Math.random() * 5 + 5}s`,
       };
@@ -33,13 +34,6 @@ const StarField = () => {
   }, []);
   return <div className="star-field" aria-hidden="true">{stars}</div>;
 };
-
-const ZzzIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" {...props}>
-      <path d="M12.288 1.096a1.002 1.002 0 0 0-.91 1.346l1.205 3.52H6.9a1 1 0 1 0 0 2h7.32l-2.43 7.104H4.9a1 1 0 1 0 0 2h7.824a1.002 1.002 0 0 0 .91-1.346l-1.205-3.52h5.681a1 1 0 1 0 0-2h-7.32l2.43-7.104h4.89a1 1 0 1 0 0-2H12.288z" />
-    </svg>
-);
-
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
@@ -52,23 +46,30 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-bg-0 text-text-1">
       <Header />
       <main className="flex-grow">
-        <section className="relative text-center py-24 sm:py-32 lg:py-40 flex flex-col items-center justify-center overflow-hidden">
+        <section className="relative text-center py-20 sm:py-28 lg:py-32 flex flex-col items-center justify-center overflow-hidden">
           <StarField />
           <div className={`container z-10 transition-all duration-1000 ease-out ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-             <ZzzIcon className="w-16 h-16 mx-auto text-primary mb-4" />
             <h1 className="text-text-1">
-              Bem‑vindo(a) ao Portal SonoCerto
+              Durma mais rápido hoje à noite
             </h1>
             <p className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-text-2">
-              Conteúdos práticos para reduzir a insônia e dormir melhor.
+              Responda 3 perguntas. Receba um plano de 10 minutos.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
-              <Button size="lg" onClick={() => scrollToContent('produtos')} aria-label="Rolar para a seção de produtos">
-                Começar agora
+              <Button size="lg" onClick={() => scrollToContent('daily-plan')} className="h-14 px-10 text-lg">
+                Começar agora: Plano para hoje à noite (10 min)
+              </Button>
+              <Button size="lg" variant="outline" onClick={() => scrollToContent('produtos')}>
+                Acordei de madrugada (SOS)
               </Button>
             </div>
+            <p className="mt-4 text-sm text-muted-foreground">Sem jargões. Só o que fazer nos próximos 10 minutos.</p>
           </div>
         </section>
+
+        <div id="daily-plan" className="container mx-auto px-4 py-16 sm:py-24 scroll-mt-20">
+          <DailyPlanGenerator />
+        </div>
 
         <div id="produtos" className="container mx-auto px-4 py-16 sm:py-24">
           <SleepPortalTabs />
