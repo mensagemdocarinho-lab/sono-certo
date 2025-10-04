@@ -3,6 +3,13 @@
 export const siteConfig = {
   author: "SonoCerto",
   contactUrl: "https://wa.link/kaefbn", // Link para seu email ou página de contato
+  rotatingQuotes: [
+    "O sono não é um luxo, é uma necessidade biológica.",
+    "Uma boa noite de sono começa na manhã anterior.",
+    "Seu quarto deve ser um santuário para o sono, não um escritório.",
+    "Não lute contra a insônia. Acalme a mente e o sono virá.",
+    "A consistência é a chave para regular seu relógio biológico."
+  ]
 };
 
 export const downloadConfig = {

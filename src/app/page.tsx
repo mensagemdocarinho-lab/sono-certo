@@ -6,6 +6,8 @@ import SleepPortalTabs from "@/components/sleep-portal-tabs";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import BackToTopButton from "@/components/back-to-top-button";
+import RotatingQuotes from "@/components/rotating-quotes";
+import { siteConfig } from "@/lib/content";
 
 const scrollToContent = () => {
   const contentElement = document.getElementById("produtos");
@@ -51,9 +53,9 @@ export default function Home() {
             <h1 className="text-text-1">
               Recupere suas noites de sono
             </h1>
-            <p className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-text-2">
-              Guias rápidos, programa de 7 dias e técnicas para aliviar a insônia e dormir melhor.
-            </p>
+            <div className="mt-6 max-w-3xl mx-auto text-lg sm:text-xl text-text-2 h-16 flex items-center justify-center">
+              <RotatingQuotes quotes={siteConfig.rotatingQuotes} />
+            </div>
           </div>
         </section>
         <div id="produtos" className="container mx-auto px-4 py-16 sm:py-24">

@@ -121,4 +121,11 @@
     0%, 100% { opacity: 0.15; }
     50% { opacity: 0.5; }
   }
+  .quote-fade {
+    animation: quote-fade-in-out 5s ease-in-out;
+  }
+  @keyframes quote-fade-in-out {
+    0%, 100% { opacity: 0; }
+    20%, 80% { opacity: 1; }
+  }
 }
