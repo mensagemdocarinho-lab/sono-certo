@@ -17,7 +17,6 @@ const PortalHome = () => {
         {tabsConfig.map((tab, index) => (
           <Card 
             key={tab.value} 
-            id={tab.value === 'sos-anchor' ? 'sos' : undefined}
             className="flex flex-col overflow-hidden transition-all duration-150 ease-in-out bg-bg-1 border-border shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 hover:border-primary/40"
             >
              <Link href={tab.href} target={'_blank'} rel="noopener noreferrer" className="flex flex-col h-full group">
@@ -36,7 +35,7 @@ const PortalHome = () => {
                 </CardContent>
                 <CardFooter className="p-5 pt-0">
                     <div className="text-primary font-semibold flex items-center group-hover:text-primary-600 transition-colors">
-                        {tab.value === 'sos-anchor' ? 'Ver Guia Rápido' : 'Ler Artigo'}
+                        Ver Guia
                         <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </div>
                 </CardFooter>
